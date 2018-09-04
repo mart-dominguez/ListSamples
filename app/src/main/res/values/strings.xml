@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">ListSamples</string>
+    <string name="btn1">Spinner</string>
+    <string name="btn2">ListView</string>
+    <string name="tituloDialogo">Seleccionar un Genero</string>
+</resources>

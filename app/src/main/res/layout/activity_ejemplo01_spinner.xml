@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Ejemplo01Spinner">
+    <TextView
+        android:id="@+id/generoSeleccionado"
+        android:text="seleccionar un valor"
+        android:layout_width="match_parent"
+         android:layout_height="wrap_content" />
+    <Spinner
+        android:id="@+id/spinnerGenero"
+        android:dropDownWidth="wrap_content"
+        android:layout_gravity="center"
+        android:prompt="@string/tituloDialogo"
+        android:spinnerMode="dropdown"
+        android:popupBackground="@color/fondoCombo"
+        android:dropDownSelector="@color/colorAccent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></Spinner>
+</LinearLayout>
