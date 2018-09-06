@@ -14,9 +14,9 @@ import java.util.List;
 
 import ar.edu.utn.frsf.isi.dam.listsamples.modelo.Pelicula;
 
-public class PeliculaAdapter extends ArrayAdapter<Pelicula>{
+public class PeliculaAdapterRecicla extends ArrayAdapter<Pelicula>{
     Context ctx;
-    public PeliculaAdapter(Context actividad, List<Pelicula> lista){
+    public PeliculaAdapterRecicla(Context actividad, List<Pelicula> lista){
         super(actividad,0,lista);
         this.ctx=actividad;
     }
@@ -24,8 +24,13 @@ public class PeliculaAdapter extends ArrayAdapter<Pelicula>{
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+
         LayoutInflater inflater = LayoutInflater.from(this.getContext());
-        View fila02 = inflater.inflate(R.layout.fila02,parent,false);
+        View fila02 = convertView;
+        if(fila02== null) {
+            fila02 = inflater.inflate(R.layout.fila02, parent, false);
+        }
+
         Pelicula peli = (Pelicula) super.getItem(position);
 
         TextView tvTitulo = (TextView) fila02.findViewById(R.id.tvTitulo);

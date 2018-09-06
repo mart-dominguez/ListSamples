@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Ejemplo02Lista">
+    <TextView
+        android:id="@+id/generoSeleccionado02"
+        android:text="seleccionar un valor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Spinner
+        android:id="@+id/spinnerGenero02"
+        android:dropDownWidth="wrap_content"
+        android:layout_gravity="center"
+        android:prompt="@string/tituloDialogo"
+        android:spinnerMode="dropdown"
+        android:popupBackground="@color/fondoCombo"
+        android:dropDownSelector="@color/colorAccent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></Spinner>
+    <TextView
+        android:id="@+id/peliculaSeleccionada02"
+        android:text="seleccionar un pelicula"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recylcerPeliculas02"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <Button
+        android:id="@+id/btnFinSeleccion02"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seleccion Finalizada"/>
+</LinearLayout>

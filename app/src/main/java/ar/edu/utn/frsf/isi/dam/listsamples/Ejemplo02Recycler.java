@@ -1,18 +1,15 @@
 package ar.edu.utn.frsf.isi.dam.listsamples;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.SparseArray;
 import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,7 +17,7 @@ import android.widget.Toast;
 import ar.edu.utn.frsf.isi.dam.listsamples.modelo.Genero;
 import ar.edu.utn.frsf.isi.dam.listsamples.modelo.Pelicula;
 
-public class Ejemplo02Lista extends AppCompatActivity {
+public class Ejemplo02Recycler extends AppCompatActivity {
 
     private ArrayAdapter<Pelicula> peliculaAdapter;
     private ArrayAdapter<Genero> adapterGenero;
@@ -38,9 +35,8 @@ public class Ejemplo02Lista extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ejemplo02_lista);
-
-        listaPeliculas = (ListView) findViewById(R.id.listaPeliculas02);
+        setContentView(R.layout.activity_ejemplo02_recycler);
+        //listaPeliculas = (ListView) findViewById(R.id.listaPeliculas02);
         spinner = (Spinner) findViewById(R.id.spinnerGenero02);
         tvGenero = (TextView) findViewById(R.id.generoSeleccionado02);
         tvPelicula = (TextView) findViewById(R.id.peliculaSeleccionada02);
@@ -50,11 +46,23 @@ public class Ejemplo02Lista extends AppCompatActivity {
         //peliculaAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_single_choice,Pelicula.lista());
         //peliculaAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_multiple_choice,Pelicula.lista());
 //        peliculaAdapter = new PeliculaAdapter(this,Pelicula.lista());
-//        peliculaAdapter = new PeliculaAdapterReciclaHolderEvento(this,Pelicula.lista());
+        //peliculaAdapter = new PeliculaAdapterReciclaHolderEvento(this,Pelicula.lista());
 
-        listaPeliculas.setAdapter(peliculaAdapter);
+       // listaPeliculas.setAdapter(peliculaAdapter);
 
+        mRecyclerView = (RecyclerView) findViewById(R.id.recylcerPeliculas02);
 
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        mRecyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        // specify an adapter (see also next example)
+        mAdapter = new PeliculaReyclerAdapter(Pelicula.lista());
+        mRecyclerView.setAdapter(mAdapter);
 
         adapterGenero = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,Genero.lista());
         adapterGenero.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -72,7 +80,7 @@ public class Ejemplo02Lista extends AppCompatActivity {
             }
         });
 
-
+        /*
         listaPeliculas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -81,7 +89,7 @@ public class Ejemplo02Lista extends AppCompatActivity {
                 tvPelicula.setText(peli.getNombre()+" <"+peli.getGenero()+"> Puntuacion: "+peli.getCalificacion());
             }
         });
-
+         */
         btnFinalizar = (Button) findViewById(R.id.btnFinSeleccion02);
 
         btnFinalizar.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +99,7 @@ public class Ejemplo02Lista extends AppCompatActivity {
                 int cantidadFilasLista = listaPeliculas.getCount();
                 for(int i=0;i<cantidadFilasLista;i++){
                     if(peliculasSeleccionadas.get(i)) {
-                        Toast.makeText(Ejemplo02Lista.this,"Agregar a favoritos "+listaPeliculas.getItemAtPosition(i).toString(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(Ejemplo02Recycler.this,"Agregar a favoritos "+listaPeliculas.getItemAtPosition(i).toString(),Toast.LENGTH_LONG).show();
                     }
                 }
             }
